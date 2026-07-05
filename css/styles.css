@@ -195,9 +195,9 @@ body.rolling .bar { height: 0; }
 
 main { position: relative; z-index: 2; }
 
-.chapter { position: relative; min-height: 210vh; }
-.chapter.hero { min-height: 260vh; }
-.chapter.finale { min-height: 170vh; }
+.chapter { position: relative; min-height: 210vh; min-height: 210svh; }
+.chapter.hero { min-height: 260vh; min-height: 260svh; }
+.chapter.finale { min-height: 170vh; min-height: 170svh; }
 
 /* Hero choreography, driven by --hp (0 at rest → 1 zoomed into the portrait):
    the block starts dead-centre, then slides down and shrinks out of the
@@ -235,6 +235,7 @@ main { position: relative; z-index: 2; }
   position: sticky;
   top: 0;
   min-height: 100vh;
+  min-height: 100svh; /* stable on mobile while the URL bar collapses */
   display: flex;
   align-items: center;
   padding: clamp(24px, 7vw, 110px);
@@ -651,9 +652,40 @@ main { position: relative; z-index: 2; }
 @media (max-width: 820px) {
   .dots { display: none; }
   .hud-tl { display: none; }
-  .hud-bl { bottom: 80px; }
-  .hud-br { bottom: 80px; }
+  /* chapter marker + % live at the top on phones; bottom row is just the controls.
+     Glass chips keep them readable as the copy scrolls beneath. */
+  .hud-bl, .hud-br {
+    top: 42px;
+    bottom: auto;
+    background: rgba(7, 7, 10, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(244, 241, 234, 0.08);
+  }
+  .hud-bl { left: 16px; }
+  .hud-br { right: 16px; }
   .num { right: -14vw; opacity: 0.7; }
+
+  /* phones read, they don't pin: chapter copy flows naturally (nothing clips),
+     while the 3D set keeps playing behind. The hero keeps its pinned zoom. */
+  .chapter:not(.hero) .pin {
+    position: relative;
+    align-items: flex-start;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 15vh;
+    padding-bottom: 24vh;
+  }
+  .name { font-size: clamp(38px, 12.5vw, 64px); -webkit-text-stroke-width: 1.2px; }
+  .title { font-size: clamp(30px, 9.5vw, 46px); }
+  .serif { font-size: 16px; }
+  .lede { font-size: 14.5px; line-height: 1.6; }
+  .kicker { font-size: 9px; letter-spacing: 0.24em; }
+  .roles { font-size: 9px; letter-spacing: 0.16em; padding: 7px 13px; }
+  .stats span { font-size: 8.5px; padding: 6px 11px; }
+  .hero .inner { transform: translateY(calc(var(--hp, 0) * 30vh)) scale(calc(1 - var(--hp, 0) * 0.14)); }
   .inner:not(.center)::before {
     inset: -10% -14%;
     background: radial-gradient(ellipse 90% 70% at 50% 50%, rgba(7, 7, 10, 0.82), transparent 78%);

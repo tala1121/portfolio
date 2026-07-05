@@ -502,7 +502,9 @@
             const k = (y * iw + x) * 4;
             return (data[k] * 0.299 + data[k + 1] * 0.587 + data[k + 2] * 0.114) / 255;
           };
-          const S = 78 / ih;
+          const MOB = window.innerWidth <= 820;
+          const S = (MOB ? 62 : 78) / ih; // smaller face fits narrow frames
+          const STEP = MOB ? 3 : 2;       // fewer particles for phone GPUs
           // oval portrait mask, weighted to the face
           const mask = (x, y) => {
             const nx = (x - iw / 2) / (iw * 0.44);
@@ -510,8 +512,8 @@
             return nx * nx + ny * ny;
           };
           const tgt = [], scat = [], colArr = [];
-          for (let y = 0; y < ih; y += 2)
-            for (let x = 0; x < iw; x += 2) {
+          for (let y = 0; y < ih; y += STEP)
+            for (let x = 0; x < iw; x += STEP) {
               const d = mask(x, y);
               if (d > 1) continue;
               const L = lum(x, y);
@@ -534,8 +536,8 @@
           portrait.add(pts);
           // contour strokes: short ink lines laid along tonal edges
           const lpos = [];
-          for (let y = 2; y < ih - 2 && lpos.length < 18000; y += 2)
-            for (let x = 2; x < iw - 2; x += 2) {
+          for (let y = 2; y < ih - 2 && lpos.length < (MOB ? 9000 : 18000); y += STEP)
+            for (let x = 2; x < iw - 2; x += STEP) {
               if (mask(x, y) > 0.92) continue;
               const sgx = lum(x + 2, y) - lum(x - 2, y);
               const sgy = lum(x, y + 2) - lum(x, y - 2);

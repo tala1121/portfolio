@@ -137,18 +137,25 @@
   // ——— sizing ———
   let W = 0, H = 0, docH = 1, isMobile = false;
 
+  let aspectComp = 0; // extra dolly distance on narrow screens so sets fit the frame
+
   function measure() {
     W = window.innerWidth;
     H = window.innerHeight;
     isMobile = W <= 820;
-    renderer.setPixelRatio(Math.min(1.75, window.devicePixelRatio || 1));
+    aspectComp = Math.max(0, 1 - W / H) * 58;
+    renderer.setPixelRatio(Math.min(isMobile ? 1.4 : 1.75, window.devicePixelRatio || 1));
     renderer.setSize(W, H);
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
     grainCanvas.width = Math.max(2, Math.floor(W / 2));
     grainCanvas.height = Math.max(2, Math.floor(H / 2));
     sides = SIDE_DESKTOP.map((s) => (isMobile ? 0 : s));
-    chapters.forEach((ch, i) => ch.group.position.setX(sides[i]));
+    chapters.forEach((ch, i) => {
+      ch.group.position.setX(sides[i]);
+      // on phones the copy sits high, so the sets drop into the lower half
+      ch.group.position.setY(isMobile && i > 0 ? -9 : 0);
+    });
     for (const s of sections) {
       const r = s.el.getBoundingClientRect();
       s.top = r.top + window.scrollY;
@@ -157,7 +164,15 @@
     docH = document.documentElement.scrollHeight;
   }
   measure();
-  window.addEventListener("resize", measure);
+  // mobile URL bars collapse/expand on scroll, firing resize with small height
+  // deltas — re-measuring then makes the page jump. Only re-measure for real changes.
+  let lastW = W, lastH = H;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth === lastW && Math.abs(window.innerHeight - lastH) < 140) return;
+    lastW = window.innerWidth;
+    lastH = window.innerHeight;
+    measure();
+  });
 
   // deep-link straight to a chapter: index.html?ch=6
   const params = new URLSearchParams(location.search);
@@ -262,7 +277,7 @@
     camera.position.set(
       dx + mxS * 2.6,
       dy - myS * 1.8,
-      -u * D + CAM_BACK + dz
+      -u * D + CAM_BACK + dz + aspectComp
     );
     const kick = Math.sin(travel * Math.PI);
     const lookX = lerp(sides[idx], sides[Math.min(idx + 1, LAST)], k) * 0.45;
