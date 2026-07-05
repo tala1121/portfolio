@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muhammad Talha Iqbal — A Life in Nine Chapters</title>
+  <meta name="description"
+    content="Software engineer, AI-security researcher, entrepreneur. A scroll-driven film in nine chapters.">
+  <meta property="og:title" content="Muhammad Talha Iqbal — A Life in Nine Chapters">
+  <meta property="og:description" content="A cinematic, scroll-driven portfolio. Nine chapters. One continuous shot.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23f4f1ea' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23f4f1ea'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Opening slate -->
+  <div class="slate-screen" id="slate">
+    <p class="slate-line slate-1">MUHAMMAD TALHA IQBAL</p>
+    <p class="slate-line slate-2">a life in nine chapters</p>
+  </div>
+
+  <!-- Scene canvas (the film) -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <canvas id="grain" aria-hidden="true"></canvas>
+
+  <!-- Letterbox bars -->
+  <div class="bar bar-top" aria-hidden="true"></div>
+  <div class="bar bar-bottom" aria-hidden="true"></div>
+
+  <!-- Film HUD -->
+  <header class="hud" aria-hidden="true">
+    <div class="hud-item hud-tl">M. TALHA IQBAL — PORTFOLIO</div>
+    <div class="hud-item hud-tr">TC <span id="hud-year">2019</span></div>
+    <div class="hud-item hud-bl" id="hud-chapter">PROLOGUE</div>
+    <div class="hud-item hud-br"><span id="hud-prog">000</span>%</div>
+  </header>
+  <div class="progress" aria-hidden="true">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <nav class="dots" id="dots" aria-label="Chapters"></nav>
+
+  <!-- Background music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="Gibran_Alcocer_-_Idea_10_(mp3.pm).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Auto-play (smooth scroll) button -->
+  <button class="autoplay-btn" id="autoplay-btn" aria-label="Auto-scroll through chapters">
+    <svg class="autoplay-icon play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <polygon points="6,3 20,12 6,21" fill="currentColor" stroke="none" />
+    </svg>
+    <svg class="autoplay-icon pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+      style="display:none">
+      <rect x="5" y="3" width="4" height="18" rx="1" fill="currentColor" stroke="none" />
+      <rect x="15" y="3" width="4" height="18" rx="1" fill="currentColor" stroke="none" />
+    </svg>
+    <span class="autoplay-label">AUTOPLAY</span>
+    <span class="autoplay-ring"></span>
+  </button>
+
+  <!-- Mute / unmute button -->
+  <button class="mute-btn" id="mute-btn" aria-label="Toggle music">
+    <svg class="mute-icon unmuted-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" opacity="0.3" />
+      <path d="M11 5L6 9H2v6h4l5 4V5z" />
+      <path d="M15.54 8.46a5 5 0 010 7.07" />
+      <path d="M18.36 5.64a9 9 0 010 12.73" />
+    </svg>
+    <svg class="mute-icon muted-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+      style="display:none">
+      <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" opacity="0.3" />
+      <path d="M11 5L6 9H2v6h4l5 4V5z" />
+      <line x1="23" y1="9" x2="17" y2="15" />
+      <line x1="17" y1="9" x2="23" y2="15" />
+    </svg>
+    <span class="mute-label"></span>
+    <span class="mute-eq">
+      <i></i><i></i><i></i><i></i>
+    </span>
+  </button>
+
+  <main id="film">
+
+    <!-- PROLOGUE -->
+    <section class="chapter hero" data-scene="hero" data-label="PROLOGUE" data-year="2019">
+      <div class="pin">
+        <div class="inner center">
+          <p class="kicker reveal">LAHORE, PAKISTAN &nbsp;·&nbsp; RUNTIME 2019 → PRESENT</p>
+          <h1 class="name reveal" style="--d:.12s">MUHAMMAD<br>TALHA IQBAL</h1>
+          <p class="roles reveal" style="--d:.26s">Software Engineer &nbsp;·&nbsp; AI-Security Researcher &nbsp;·&nbsp;
+            Entrepreneur</p>
+          <p class="serif reveal" style="--d:.4s">Nine chapters. One continuous shot.</p>
+          <div class="scroll-cue reveal" style="--d:.6s"><span>SCROLL TO BEGIN</span><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH I — PUMPKIN STUDIOS -->
+    <section class="chapter" data-scene="pumpkin" data-label="CH. I — THE ORIGIN" data-year="2019"
+      data-accent="#ff8a3c">
+      <div class="pin">
+        <div class="num" aria-hidden="true">I</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER I &nbsp;·&nbsp; 2019 – 2023 &nbsp;·&nbsp; LAHORE</p>
+          <h2 class="title reveal" style="--d:.08s">Pumpkin Studios</h2>
+          <p class="serif reveal" style="--d:.16s">In which a twelve-year-old opens a studio.</p>
+          <p class="lede reveal" style="--d:.24s">An independent 3D-visualisation studio, founded at age twelve and run
+            through five years of school nights — photorealistic product renders and architectural visualisation,
+            delivered to clients who never asked how old the director was.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span><strong>Toyota Indus Motors, Dawn Bread, Pakistan
+                  Army</strong> — enterprise and government engagements. Real briefs, real deadlines.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Owned the pipeline end-to-end: client briefing, scoping,
+                production, revisions, delivery.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Concurrent projects under strict branding constraints —
+                years before the first O-level paper.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>FOUNDED AT 12</span><span>2019 – 2023</span><span>3D
+              VISUALISATION</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH II — SCHOOL -->
+    <section class="chapter" data-scene="school" data-label="CH. II — THE EDUCATION" data-year="2021"
+      data-accent="#8db8ff">
+      <div class="pin">
+        <div class="num" aria-hidden="true">II</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER II &nbsp;·&nbsp; → 2023 &nbsp;·&nbsp; CAMBRIDGE O &amp; A LEVELS</p>
+          <h2 class="title reveal" style="--d:.08s">International School Lahore</h2>
+          <p class="serif reveal" style="--d:.16s">Two campuses, one merit scholarship, and a chemistry book.</p>
+          <p class="lede reveal" style="--d:.24s">O-levels began at Beaconhouse Defence Campus. By O3 the story moved to
+            International School Lahore — colonnades, quadrangles, and a Cambridge A-level finish in 2023, on a merit
+            scholarship.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span><strong>Beaconhouse Defence Campus → International School
+                  Lahore</strong> from O3; O-levels and A-levels (A1–A2) completed at ISL, 2023.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Merit Scholarship recipient.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Co-wrote a <strong>chemistry book</strong> with Sir
+                Muhammad Ali — a first publication, shipped before university.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>CAMBRIDGE, 2023</span><span>MERIT
+              SCHOLAR</span><span>CO-AUTHOR</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH III — COMSATS -->
+    <section class="chapter" data-scene="comsats" data-label="CH. III — THE DEGREE" data-year="2023"
+      data-accent="#5ee6a8">
+      <div class="pin">
+        <div class="num" aria-hidden="true">III</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER III &nbsp;·&nbsp; JAN 2023 → PRESENT &nbsp;·&nbsp; BS SOFTWARE ENGINEERING
+          </p>
+          <h2 class="title reveal" style="--d:.08s">COMSATS University Lahore</h2>
+          <p class="serif reveal" style="--d:.16s">Where the tools finally got names.</p>
+          <p class="lede reveal" style="--d:.24s">Software engineering, done properly: data structures to distributed
+            computing, operating systems to information security — with projects graded at distinction and a habit of
+            shipping more than the rubric asked for.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span>Coursework spine: DSA, databases, operating systems,
+                networks, information security, pattern recognition, HCI, parallel &amp; distributed computing.</span>
+            </li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span><strong>InsightHub</strong> — a two-sided brand–consumer
+                review platform (React, Node, MongoDB, NLP auto-tagging); distinction-level marks.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Designed and <strong>cryptanalysed a custom SPN block
+                  cipher</strong> — differential &amp; linear attacks, benchmarked against AES-128 and
+                PRESENT-80.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>BS SOFTWARE ENGINEERING</span><span>DISTINCTION
+              PROJECTS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH IV — U.N.I GLOBAL -->
+    <section class="chapter" data-scene="uni" data-label="CH. IV — THE FIRST STARTUP" data-year="2023"
+      data-accent="#b49bff">
+      <div class="pin">
+        <div class="num" aria-hidden="true">IV</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER IV &nbsp;·&nbsp; JAN 2023 → PRESENT &nbsp;·&nbsp; ED-TECH</p>
+          <h2 class="title reveal" style="--d:.08s">U.n.I Global</h2>
+          <p class="serif reveal" style="--d:.16s">First as the researcher. Then as the closer.</p>
+          <p class="lede reveal" style="--d:.24s">A university connectivity platform. Started in the field as a UX
+            researcher — interviews, on-ground campus studies — then took over sales &amp; business development and
+            drove it to 8,000+ active users in six months, without a rupee of paid marketing.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span><strong>UX research on the ground</strong> across
+                Pakistani universities — validated student pain points shaped product positioning.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Partnership pipelines with university societies and
+                student bodies — community-led acquisition, zero ad spend.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Supervised the junior team across outreach, campus ops
+                and content; weekly reviews tied to acquisition metrics.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>8,000+ USERS</span><span>6 MONTHS</span><span>$0 PAID
+              MARKETING</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH V — SYSTEMS × PARTNERLINQ -->
+    <section class="chapter" data-scene="sysda" data-label="CH. V — THE ENTERPRISE" data-year="2024"
+      data-accent="#6ab0ff">
+      <div class="pin">
+        <div class="num" aria-hidden="true">V</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER V &nbsp;·&nbsp; JUL – SEP 2024 &nbsp;·&nbsp; DATA ANALYST INTERN</p>
+          <h2 class="title reveal" style="--d:.08s">Systems Limited × PartnerLinq</h2>
+          <p class="serif reveal" style="--d:.16s">The intern who shipped an internal product.</p>
+          <p class="lede reveal" style="--d:.24s">Embedded with a US-facing supply-chain platform on workforce analytics
+            — and left behind a working HRMS that the operations team actually used.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span><strong>Independently designed &amp; built an
+                  HRMS</strong>: SQL Server schema, CRUD workflows, wired into the live reporting pipeline.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Power BI dashboards (DAX, SQL) tracking onboarding,
+                utilisation and capacity across delivery pods — optimised incremental-refresh measures on large fact
+                tables.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>First exposure to DAG-based workflow orchestration,
+                mapped against a production ETL stack.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>HRMS, SHIPPED SOLO</span><span>SQL SERVER</span><span>POWER
+              BI · DAX</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH VI — CIRKLES -->
+    <section class="chapter" data-scene="cirkles" data-label="CH. VI — THE VENTURE" data-year="2024"
+      data-accent="#ffffff">
+      <div class="pin">
+        <div class="num" aria-hidden="true">VI</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER VI &nbsp;·&nbsp; 2024 – JUN 2026 &nbsp;·&nbsp; EVENT DISCOVERY</p>
+          <h2 class="title reveal" style="--d:.08s">Cirkles</h2>
+          <p class="serif reveal" style="--d:.16s">Eight circles. One operating function, held end-to-end.</p>
+          <p class="lede reveal" style="--d:.24s">Founding partner and operations lead of an event-discovery platform —
+            launch planning, partner pipelines, acquisition experiments — through the high-pressure build cycles and the
+            clear-eyed decision to exit in mid-2026.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span>Owned launch operations, partnership pipelines and
+                user-acquisition experiments across the venture's full lifecycle.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Ran feedback loops with event organisers and early users;
+                turned qualitative signal into engineering priorities.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Drove organisational decisions through structured
+                analysis of team, market and trajectory — including the exit.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>FOUNDING PARTNER</span><span>OPERATIONS LEAD</span><span>2024
+              – 2026</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH VII — SYSTEMS, AI & ANALYTICS -->
+    <section class="chapter" data-scene="sysds" data-label="CH. VII — THE CRAFT" data-year="2025" data-accent="#3fd9c0">
+      <div class="pin">
+        <div class="num" aria-hidden="true">VII</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER VII &nbsp;·&nbsp; JUN – AUG 2025 &nbsp;·&nbsp; DATA SCIENCE INTERN</p>
+          <h2 class="title reveal" style="--d:.08s">Systems Limited — AI &amp; Analytics</h2>
+          <p class="serif reveal" style="--d:.16s">Back at Systems. This time, the models.</p>
+          <p class="lede reveal" style="--d:.24s">A focused data-science engagement in the AI &amp; Analytics practice:
+            end-to-end supervised pipelines on real operational data, built to the standard senior data scientists sign
+            off on.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span><strong>scikit-learn, XGBoost, LightGBM</strong> pipelines
+                — EDA, imputation, feature engineering, stratified k-fold, threshold tuning on imbalanced
+                targets.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>Time-series baselines (ARIMA, Prophet, lag-feature GBMs)
+                benchmarked on internal demand signals.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Reproducible notebooks and model cards; MLOps
+                fundamentals — experiment tracking, versioning, monitoring.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>XGBOOST · LIGHTGBM</span><span>ROC-AUC · PR-AUC · MAPE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH VIII — RESEARCH -->
+    <section class="chapter" data-scene="research" data-label="CH. VIII — THE FRONTIER" data-year="2026"
+      data-accent="#ff5c7a">
+      <div class="pin">
+        <div class="num" aria-hidden="true">VIII</div>
+        <div class="inner">
+          <p class="kicker reveal">CHAPTER VIII &nbsp;·&nbsp; SEP 2025 → PRESENT &nbsp;·&nbsp; FINAL-YEAR RESEARCH</p>
+          <h2 class="title reveal" style="--d:.08s">Securing Autonomous Agents</h2>
+          <p class="serif reveal" style="--d:.16s">What happens when the AI gets tricked? He's working on that.</p>
+          <p class="lede reveal" style="--d:.24s">The Federated Agentic Protocol (FAP): a multi-layer verification
+            framework against prompt-injection-driven privilege escalation and the confused-deputy problem in LLM
+            tool-calling systems.</p>
+          <ul class="beats">
+            <li class="reveal" style="--d:.3s"><b>01</b><span>An <strong>isolated verifier-LLM</strong> that never sees
+                raw input — structured metadata only, constrained-JSON verdicts. Phi-3 Mini, running locally via
+                Ollama.</span></li>
+            <li class="reveal" style="--d:.38s"><b>02</b><span>YAML declarative policy engine, Pydantic-validated: tool
+                whitelists, scope constraints, rate limits — <strong>sub-5&nbsp;ms</strong> on the hot path.</span></li>
+            <li class="reveal" style="--d:.46s"><b>03</b><span>Cryptographic <strong>hash-chain audit log</strong>;
+                AgentDojo-style evaluation in progress; shipping as a Python SDK — one decorator:
+                <code>@IntentGate</code>.</span></li>
+          </ul>
+          <div class="stats reveal" style="--d:.54s"><span>FAP</span><span>VERIFIER-LLM</span><span>&lt;5MS POLICY
+              ENGINE</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH IX — CREDITS -->
+    <section class="chapter finale" data-scene="finale" data-label="CH. IX — ROLL CREDITS" data-year="2026"
+      data-accent="#e8c46b">
+      <div class="pin">
+        <div class="inner center">
+          <p class="kicker reveal">CHAPTER IX &nbsp;·&nbsp; THE NEXT CHAPTER IS UNWRITTEN</p>
+          <h2 class="title reveal" style="--d:.08s">Roll Credits</h2>
+          <div class="honours reveal" style="--d:.2s">
+            <p><b>WINNER</b> — LUMS Psifi Science &amp; Technology Festival, 2022 &amp; 2023</p>
+            <p><b>SILVER MEDAL</b> — Microsoft Hackathon, RAS Society</p>
+            <p><b>3RD PLACE</b> — COLABS Pitch to Win, 2025</p>
+          </div>
+          <p class="skills-line reveal" style="--d:.3s">PYTHON · JAVASCRIPT · C++ · FLUTTER · REACT · NODE · SQL ·
+            MONGODB · FIREBASE · OLLAMA · LANGCHAIN · POWER BI · FIGMA</p>
+          <p class="credit-line reveal" style="--d:.4s">Written, produced &amp; lived by</p>
+          <p class="credit-name reveal" style="--d:.48s">MUHAMMAD TALHA IQBAL</p>
+          <div class="contact reveal" style="--d:.58s">
+            <a href="mailto:talhaiqbal1121@gmail.com">talhaiqbal1121@gmail.com</a>
+            <a href="tel:+923318412238">+92 331 841 2238</a>
+            <span>Lahore, Pakistan</span>
+          </div>
+          <p class="fineprint reveal" style="--d:.68s">© 2026 · SHOT ENTIRELY ON SCROLL · NO TEMPLATES WERE HARMED</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+# local working files not used by the site
+image.png
+images.jpg
+graphify-out/
+*.log
