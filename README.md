@@ -1,3 +1,6 @@
+Check it out!!  https://tala1121.github.io/portfolio/
+
+
 They say show, don't tell. So I stopped telling!
 
 Every portfolio website I opened looked the same. A grid of cards, a skills section, a contact form. Dead on arrival.
@@ -11,3 +14,4 @@ this is just a fraction of the ideas I planned.
 
 Portfolios aren't dead. We just stopped directing them.
 Link in comments. Scroll it with sound on :)
+zzz
